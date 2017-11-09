@@ -1,0 +1,99 @@
+version: '2'
+services:
+  zookeeper:
+    image: debezium/zookeeper:${DEBEZIUM_VERSION}
+    ports:
+     - 2181:2181
+     - 2888:2888
+     - 3888:3888
+  kafka:
+    image: debezium/kafka:${DEBEZIUM_VERSION}
+    ports:
+     - 9092:9092
+    links:
+     - zookeeper
+    environment:
+     - ZOOKEEPER_CONNECT=zookeeper:2181
+  mysql1:
+    image: debezium/example-mysql:${DEBEZIUM_VERSION}
+    ports:
+     - 33061:3306
+    environment:
+     - MYSQL_ROOT_PASSWORD=debezium
+     - MYSQL_USER=mysqluser
+     - MYSQL_PASSWORD=mysqlpw
+  mysql2:
+    image: debezium/example-mysql:${DEBEZIUM_VERSION}
+    ports:
+     - 33062:3306
+    environment:
+     - MYSQL_ROOT_PASSWORD=debezium
+     - MYSQL_USER=mysqluser
+     - MYSQL_PASSWORD=mysqlpw
+  mysql3:
+    image: debezium/example-mysql:${DEBEZIUM_VERSION}
+    ports:
+     - 33063:3306
+    environment:
+     - MYSQL_ROOT_PASSWORD=debezium
+     - MYSQL_USER=mysqluser
+     - MYSQL_PASSWORD=mysqlpw
+  mysql4:
+    image: debezium/example-mysql:${DEBEZIUM_VERSION}
+    ports:
+     - 33064:3306
+    environment:
+     - MYSQL_ROOT_PASSWORD=debezium
+     - MYSQL_USER=mysqluser
+     - MYSQL_PASSWORD=mysqlpw
+  mysql5:
+    image: debezium/example-mysql:${DEBEZIUM_VERSION}
+    ports:
+     - 33065:3306
+    environment:
+     - MYSQL_ROOT_PASSWORD=debezium
+     - MYSQL_USER=mysqluser
+     - MYSQL_PASSWORD=mysqlpw
+  mysql6:
+    image: debezium/example-mysql:${DEBEZIUM_VERSION}
+    ports:
+     - 33066:3306
+    environment:
+     - MYSQL_ROOT_PASSWORD=debezium
+     - MYSQL_USER=mysqluser
+     - MYSQL_PASSWORD=mysqlpw
+  connect1:
+    image: debezium/connect:${DEBEZIUM_VERSION}
+    ports:
+     - 8083:8083
+    links:
+     - kafka
+     - mysql1
+     - mysql2
+     - mysql3
+     - mysql4
+     - mysql5
+     - mysql6
+    environment:
+     - BOOTSTRAP_SERVERS=kafka:9092
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=my_connect_configs
+     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+  connect2:
+    image: debezium/connect:${DEBEZIUM_VERSION}
+    ports:
+     - 8084:8083
+    links:
+     - kafka
+     - mysql1
+     - mysql2
+     - mysql3
+     - mysql4
+     - mysql5
+     - mysql6
+    environment:
+     - BOOTSTRAP_SERVERS=kafka:9092
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=my_connect_configs
+     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+
