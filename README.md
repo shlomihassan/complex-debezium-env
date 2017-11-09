@@ -1,9 +1,10 @@
-Copyright Debezium Authors. Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+# test complex environemnt of debezium
 
-# Debezium Examples
+docker-compose -f docker-compose-mysql.yaml up -d
 
-This repository contains multiple examples for using Debezium, e.g. configuration files, Docker Compose files, OpenShift templates.
-# complex-debezium-env
-# complex-debezium-env
-# complex-debezium-env
-# complex-debezium-env
+curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8084/connectors/ -d @register-mysql1.json
+curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8084/connectors/ -d @register-mysql2.json
+curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8084/connectors/ -d @register-mysql3.json
+curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8084/connectors/ -d @register-mysql4.json
+curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8084/connectors/ -d @register-mysql5.json
+curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8084/connectors/ -d @register-mysql6.json
