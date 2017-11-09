@@ -1,6 +1,7 @@
 # test complex environemnt of debezium
 
 #boot all the dockers
+
 docker-compose -f docker-compose-mysql.yaml up -d
 
 # register all the connectors
