@@ -4,6 +4,7 @@
 
 docker-compose -f docker-compose-mysql.yaml up -d
 
+```shell
 # register all the connectors
 1) curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8084/connectors/ -d @register-mysql1.json
 
@@ -16,4 +17,4 @@ docker-compose -f docker-compose-mysql.yaml up -d
 5) curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8084/connectors/ -d @register-mysql5.json
 
 6) curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8084/connectors/ -d @register-mysql6.json
-
+```
